@@ -1,0 +1,18 @@
+ module ma controls p
+   init
+   :: true ~> p' := true;
+   update
+   :: p or q ~> p':= true;
+   :: q ~> p' := !p;
+
+ module mb controls q
+   init
+   :: true ~> q' := false;
+   update
+   :: p and !q ~> q':= p;
+   :: p <-> q ~> q' := !q;
+
+
+goals
+#SL true
+#SL true

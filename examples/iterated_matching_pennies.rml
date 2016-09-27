@@ -1,0 +1,28 @@
+ module alice controls ca
+   init
+   :: true ~> ca' := true;
+   :: true ~> ca' := false;
+   update
+   :: true ~> ca' := true;
+   :: true ~> ca' := false;
+ 
+  module bob controls cb
+   init
+   :: true ~> cb' := true;
+   :: true ~> cb' := false;
+   update
+   :: true ~> cb' := true;
+   :: true ~> cb' := false;
+
+  module environment controls wa,wb,s0,s1,s2
+   init
+   :: true ~> wa' := false , wb' := false, s0' := true, s1' := false, s2':=false;
+   update
+   :: (ca <-> cb) ~> wa' := true, wb' := false, s0' := false, s1' := true, s2':=false;
+   :: !(ca <-> cb) ~> wb' := true, wa' := false, s0' := false, s1' := false, s2':= true;
+
+ goals
+ #SL G F wa
+ #SL G F wb
+ #SL true
+

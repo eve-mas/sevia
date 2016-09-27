@@ -1,0 +1,122 @@
+Agent Environment
+Obsvars:
+T : boolean;
+end Obsvars
+Actions = {none};
+Protocol:
+T = true : {none};
+T = false : {none};
+end Protocol
+Evolution:
+end Evolution
+end Agent
+
+Agent m0
+Vars:
+d0 : boolean;
+u0 : boolean;
+end Vars
+Actions = {ac0,ac1,ac2,ac3,none};
+Protocol:
+(d0=true and u0=true) : {ac1,ac2};
+(u0=true and d0=false) : {ac1,ac2};
+(d0=true and u0=false) : {ac1,ac2};
+(d0=false and u0=false) : {ac1,ac2};
+end Protocol
+Evolution:
+(d0=true and u0=true) if Action=ac0;
+(u0=true and d0=false) if Action=ac1;
+(d0=true and u0=false) if Action=ac2;
+(d0=false and u0=false) if Action=ac3;
+end Evolution
+end Agent
+
+Agent m1
+Vars:
+d1 : boolean;
+u1 : boolean;
+end Vars
+Actions = {ac0,ac1,ac2,ac3,none};
+Protocol:
+(d1=true and u1=true) : {ac1,ac2};
+(u1=true and d1=false) : {ac1,ac2};
+(d1=true and u1=false) : {ac1,ac2};
+(d1=false and u1=false) : {ac1,ac2};
+end Protocol
+Evolution:
+(d1=true and u1=true) if Action=ac0;
+(u1=true and d1=false) if Action=ac1;
+(d1=true and u1=false) if Action=ac2;
+(d1=false and u1=false) if Action=ac3;
+end Evolution
+end Agent
+
+Agent m2
+Vars:
+d2 : boolean;
+u2 : boolean;
+end Vars
+Actions = {ac0,ac1,ac2,ac3,none};
+Protocol:
+(d2=true and u2=true) : {ac1,ac2};
+(u2=true and d2=false) : {ac1,ac2};
+(d2=true and u2=false) : {ac1,ac2};
+(d2=false and u2=false) : {ac1,ac2};
+end Protocol
+Evolution:
+(d2=true and u2=true) if Action=ac0;
+(u2=true and d2=false) if Action=ac1;
+(d2=true and u2=false) if Action=ac2;
+(d2=false and u2=false) if Action=ac3;
+end Evolution
+end Agent
+
+Agent m3
+Vars:
+d3 : boolean;
+u3 : boolean;
+end Vars
+Actions = {ac0,ac1,ac2,ac3,none};
+Protocol:
+(d3=true and u3=true) : {ac1,ac2};
+(u3=true and d3=false) : {ac1,ac2};
+(d3=true and u3=false) : {ac1,ac2};
+(d3=false and u3=false) : {ac1,ac2};
+end Protocol
+Evolution:
+(d3=true and u3=true) if Action=ac0;
+(u3=true and d3=false) if Action=ac1;
+(d3=true and u3=false) if Action=ac2;
+(d3=false and u3=false) if Action=ac3;
+end Evolution
+end Agent
+
+Evaluation
+T if Environment.T=true;
+d0 if m0.d0=true;
+u0 if m0.u0=true;
+d1 if m1.d1=true;
+u1 if m1.u1=true;
+d2 if m2.d2=true;
+u2 if m2.u2=true;
+d3 if m3.d3=true;
+u3 if m3.u3=true;
+end Evaluation	
+
+InitStates
+((m0.u0=true and m0.d0=false) or (m0.d0=true and m0.u0=false)) and
+((m1.u1=true and m1.d1=false) or (m1.d1=true and m1.u1=false)) and
+((m2.u2=true and m2.d2=false) or (m2.d2=true and m2.u2=false)) and
+((m3.u3=true and m3.d3=false) or (m3.d3=true and m3.u3=false)) and Environment.T=true;
+end InitStates
+
+Formulae
+ <<st_m0>> <<st_m1>> <<st_m2>> <<st_m3>> <<st_Env>>
+ (m0,st_m0) (m1,st_m1) (m2,st_m2) (m3,st_m3) (Environment,st_Env)
+(
+(G F ((u3 or (u2 or u1)) and d0) or [[alt_st_m0]](m0,alt_st_m0)(!(G F ((u3 or (u2 or u1)) and d0)))) and
+(G F ((u3 or (u2 or u0)) and d1) or [[alt_st_m1]](m1,alt_st_m1)(!(G F ((u3 or (u2 or u0)) and d1)))) and
+(G F ((u3 or (u1 or u0)) and d2) or [[alt_st_m2]](m2,alt_st_m2)(!(G F ((u3 or (u1 or u0)) and d2)))) and
+(G F ((u2 or (u1 or u0)) and d3) or [[alt_st_m3]](m3,alt_st_m3)(!(G F ((u2 or (u1 or u0)) and d3))))
+);
+end Formulae

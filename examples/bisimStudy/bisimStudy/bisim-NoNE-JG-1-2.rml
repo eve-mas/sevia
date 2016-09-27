@@ -1,0 +1,50 @@
+ module pl1 controls x
+   init
+   :: true ~> x' := true;
+   :: true ~> x' := false;
+   update
+   :: true ~> x' := true;
+   :: true ~> x' := false;
+
+module pl2 controls y
+   init
+   :: true ~> y' := true;
+   :: true ~> y' := false;
+   update
+   :: true ~> y' := true;
+   :: true ~> y' := false;
+
+module pl3 controls a
+   init
+   :: true ~> a' := true;
+   :: true ~> a' := false;
+   update
+   :: true ~> a' := true;
+   :: true ~> a' := false;
+
+module pl4 controls b
+   init
+   :: true ~> b' := true;
+   :: true ~> b' := false;
+   update
+   :: true ~> b' := true;
+   :: true ~> b' := false;
+
+module environment controls s0, s1, s2, s3, s4, p, q
+   init
+   :: true ~> s0' := true , s1' := false, s2' := false, s3' := false, s4' := false, p' := false, q' := false;
+   update
+   :: (s0) and (x and y and a and b) ~> p' := false , q' := false , s0' := false , s1' := false, s2' := false, s3' := false, s4' := true;
+   :: (s0) and !(x and y and a and b) ~> p' := false , q' := false , s0' := false , s1' := true, s2' := false, s3' := false, s4' := false;
+   :: (s1) and ((a and b) or (!a and !b)) ~> p' := true , q' := false , s0' := false , s1' := false, s2' := true, s3' := false, s4' := false;
+   :: (s1) and ((a and !b) or (!a and b)) ~> p' := false , q' := true , s0' := false , s1' := false, s2' := false, s3' := true, s4' := false;
+ 
+ goals
+ #SL F G p
+ #SL F G q
+ #SL (F G (!p and !q)) or (F G (p and !q))
+ #SL (F G (!p and !q)) or (F G (!p and q)) 
+ #SL true
+ 
+ -- 80 states ; 2sec
+-- STIC-v0.2.1: execution time = 0.025, number of reachable states = 79, CORRECT

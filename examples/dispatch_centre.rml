@@ -1,0 +1,48 @@
+ module alice controls p
+   init
+   :: true ~> p' := true;
+   :: true ~> p' := false;
+   update
+   :: true ~> p' := true;
+   :: true ~> p' := false;
+ 
+  module bob controls q
+   init
+   :: true ~> q' := true;
+   :: true ~> q' := false;
+   update
+   :: true ~> q' := true;
+   :: true ~> q' := false;
+
+
+  module environment controls x,y,s4,s3,s2,s1,s0
+   init
+   :: true ~> x':=false,y':=false,s4':=false,s3':=false,s2':=false,s1':=false,s0':=true;
+   update
+--1
+   :: s0 and (p <-> q) ~> x':=false,y':=false,s4':=false,s3':=false,s2':=false,s1':=false,s0':=true;
+--2
+   :: s0 and (p and !q) ~> x':=true,y':=false,s4':=false,s3':=false,s2':=false,s1':=true,s0':=false;
+--3
+   :: s1 and (p <-> q) ~> x':=false,y':=false,s4':=false,s3':=false,s2':=false,s1':=false,s0':=true;
+--4
+   :: s0 and (!p and q) ~> x':=false,y':=true,s4':=false,s3':=false,s2':=true,s1':=false,s0':=false;
+--5
+   :: s2 and (p <-> q) ~> x':=false,y':=false,s4':=false,s3':=false,s2':=false,s1':=false,s0':=true;
+--6
+   :: s1 and (!p and q) ~> x':=false,y':=true,s4':=false,s3':=false,s2':=true,s1':=false,s0':=false;
+--7
+   :: s2 and (p and !q) ~> x':=true,y':=false,s4':=false,s3':=false,s2':=false,s1':=true,s0':=false;
+--8
+   :: s1 and (p and !q) ~> x':=false,y':=true,s4':=false,s3':=true,s2':=false,s1':=false,s0':=false;
+--9
+   :: s2 and (!p and q) ~> x':=true,y':=false,s4':=true,s3':=false,s2':=false,s1':=false,s0':=false;
+--10
+   :: s3 ~> x':=false,y':=true,s4':=false,s3':=true,s2':=false,s1':=false,s0':=false;
+--11
+   :: s4 ~> x':=true,y':=false,s4':=true,s3':=false,s2':=false,s1':=false,s0':=false;
+
+goals
+#SL G F x
+#SL G F y
+#SL true

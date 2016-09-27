@@ -1,0 +1,33 @@
+ module alice controls ca
+   init
+   :: true ~> ca' := true;
+   :: true ~> ca' := false;
+   update
+   :: true ~> ca' := true;
+   :: true ~> ca' := false;
+ 
+  module bob controls cb
+   init
+   :: true ~> cb' := true;
+   :: true ~> cb' := false;
+   update
+   :: true ~> cb' := true;
+   :: true ~> cb' := false;
+
+  module environment controls p0,p1,q0,q1,s0,s1,s2,s3,s4
+   init
+   :: true ~> p0':=false,p1':=false,q0':=false,q1':=false,s0':=true,s1':=false,s2':=false,s3':=false,s4':=false;
+   update
+   :: s0 and (ca and cb) ~> s0':=false,s1':=true,s2':=false,s3':=false,s4':=false,p1':=true,p0':=false,q1':=true,q0':=false;
+   :: s0 and (ca and !cb) ~> s0':=false,s1':=false,s2':=true,s3':=false,s4':=false,p1':=false,p0':=false,q1':=true,q0':=true;
+   :: s0 and (!ca and cb) ~> s0':=false,s1':=false,s2':=false,s3':=true,s4':=false,p1':=true,p0':=true,q1':=false,q0':=false;
+   :: s0 and (!ca and !cb) ~> s0':=false,s1':=false,s2':=false,s3':=false,s4':=true,p1':=false,p0':=true,q1':=false,q0':=true;
+   :: s1 ~> p1':=true,p0':=false,q1':=true,q0':=false;
+   :: s2 ~> p1':=false,p0':=false,q1':=true,q0':=true;
+   :: s3 ~> p1':=true,p0':=true,q1':=false,q0':=false;
+   :: s4 ~> p1':=false,p0':=true,q1':=false,q0':=true;
+
+goals
+#SL X (p1 and p0)
+#SL X (q1 and q0)
+#SL true

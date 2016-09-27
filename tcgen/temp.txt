@@ -1,0 +1,22 @@
+2
+>> p2p.ispl
+
+******************************************************
+                      STIC          
+    SRML to ISPL Compiler & Equilibrium Analyser        
+                     v0.2.2          
+
+******************************************************
+...
+Compiling...
+
+Translation finished
+Output File: ./output.ispl
+Compilation time (s): 0.000723
+Running MCMAS on output file
+
+Building reachable state space...
+  Formula number 1: <<st_m0>> <<st_m1>> <<st_m2>> <<st_m3>> <<st_Env>> (m0, st_m0) (m1, st_m1) (m2, st_m2) (m3, st_m3) (Environment, st_Env) ((((G F ((u3 || (u2 || u1)) && d0) || [[alt_st_m0]] (m0, alt_st_m0) (! G F ((u3 || (u2 || u1)) && d0))) && (G F ((u3 || (u2 || u0)) && d1) || [[alt_st_m1]] (m1, alt_st_m1) (! G F ((u3 || (u2 || u0)) && d1)))) && (G F ((u3 || (u1 || u0)) && d2) || [[alt_st_m2]] (m2, alt_st_m2) (! G F ((u3 || (u1 || u0)) && d2)))) && (G F ((u2 || (u1 || u0)) && d3) || [[alt_st_m3]] (m3, alt_st_m3) (! G F ((u2 || (u1 || u0)) && d3)))), is TRUE in the model
+execution time = 0.014
+number of reachable states = 16
+BDD memory in use = 10415456

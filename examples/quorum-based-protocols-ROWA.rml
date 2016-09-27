@@ -1,0 +1,39 @@
+ module server0 controls x0
+   init
+   :: true ~> x0' := true;
+   :: true ~> x0' := false;
+   update
+   :: true ~> x0' := true;
+   :: true ~> x0' := false;
+
+ module server1 controls x1
+   init
+   :: true ~> x1' := true;
+   :: true ~> x1' := false;
+   update
+   :: true ~> x1' := true;
+   :: true ~> x1' := false;
+
+ module server2 controls x2
+   init
+   :: true ~> x2' := true;
+   :: true ~> x2' := false;
+   update
+   :: true ~> x2' := true;
+   :: true ~> x2' := false;
+
+ module environment controls s0,s1,s2,r,w
+   init
+   :: true ~> s2':=false, s1':=false, s0':=true, r':=false, w':=false;
+   update
+--1
+   :: (x0 and x1 and x2) ~> s2':=false, s1':=true, s0':=false, r':=false, w':=true;
+--2
+   :: !(x0 and x1 and x2) ~> s2':=false, s1':=false, s0':=true, r':=false, w':=false;
+
+goals
+#SL ((G F r) and (G F w) and (G F !x0))
+#SL ((G F r) and (G F w) and (G F !x1))
+#SL ((G F r) and (G F w) and (G F !x2))
+#SL true
+

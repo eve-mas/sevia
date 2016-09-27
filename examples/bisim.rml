@@ -1,0 +1,42 @@
+ module pl1 controls var1
+   init
+   :: true ~> var1' := true;
+   :: true ~> var1' := false;
+   update
+   :: true ~> var1' := true;
+   :: true ~> var1' := false;
+
+module pl2 controls var2
+   init
+   :: true ~> var2' := true;
+   :: true ~> var2' := false;
+   update
+   :: true ~> var2' := true;
+   :: true ~> var2' := false;
+
+module pl3 controls var3
+   init
+   :: true ~> var3' := true;
+   :: true ~> var3' := false;
+   update
+   :: true ~> var3' := true;
+   :: true ~> var3' := false;
+
+module environment controls p , q , s4, s3, s2 , s1 , s0
+   init
+   :: true ~> p' := false , q' := false , s4' := false, s3' := false,  s2' := false , s1' := false , s0' := true;
+   update
+   :: s0 and var1 and var2 and var3 ~> p' := false , q' := false , s4' := true, s3' := false,  s2' := false , s1' := false , s0' := false;
+   :: s0 and !(var1 and var2 and var3) ~> p' := false , q' := false , s4' := false, s3' := false,  s2' := false , s1' := true , s0' := false;
+   :: s1 and var1 ~> p' := true , q' := false , s4' := false, s3' := false,  s2' := true , s1' := false , s0' := false;
+   :: s1 and !var1 ~> p' := false , q' := true , s4' := false, s3' := true,  s2' := false , s1' := false , s0' := false;
+   :: s2 ~> p':=true, q':=false;
+   :: s3 ~> p':=false, q':=true;
+   :: s4 ~> p':=false, q':=false;
+ 
+ goals
+ #SL true
+ #SL X X p
+ #SL X X q
+ #SL true
+ 

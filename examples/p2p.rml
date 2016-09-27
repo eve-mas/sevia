@@ -1,0 +1,73 @@
+module m0 controls d0,u0
+init
+:: true ~> u0' := true, d0':= false;
+:: true ~> u0' := false, d0':= true;
+update
+:: true ~> u0' := true, d0':= false;
+:: true ~> u0' := false, d0':= true;
+
+module m1 controls d1,u1
+init
+:: true ~> u1' := true, d1':= false;
+:: true ~> u1' := false, d1':= true;
+update
+:: true ~> u1' := true, d1':= false;
+:: true ~> u1' := false, d1':= true;
+
+module m2 controls d2,u2
+init
+:: true ~> u2' := true, d2':= false;
+:: true ~> u2' := false, d2':= true;
+update
+:: true ~> u2' := true, d2':= false;
+:: true ~> u2' := false, d2':= true;
+
+module m3 controls d3,u3
+init
+:: true ~> u3' := true, d3':= false;
+:: true ~> u3' := false, d3':= true;
+update
+:: true ~> u3' := true, d3':= false;
+:: true ~> u3' := false, d3':= true;
+
+module m4 controls d4,u4
+init
+:: true ~> u4' := true, d4':= false;
+:: true ~> u4' := false, d4':= true;
+update
+:: true ~> u4' := true, d4':= false;
+:: true ~> u4' := false, d4':= true;
+
+module m5 controls d5,u5
+init
+:: true ~> u5' := true, d5':= false;
+:: true ~> u5' := false, d5':= true;
+update
+:: true ~> u5' := true, d5':= false;
+:: true ~> u5' := false, d5':= true;
+
+module m6 controls d6,u6
+init
+:: true ~> u6' := true, d6':= false;
+:: true ~> u6' := false, d6':= true;
+update
+:: true ~> u6' := true, d6':= false;
+:: true ~> u6' := false, d6':= true;
+
+module m7 controls d7,u7
+init
+:: true ~> u7' := true, d7':= false;
+:: true ~> u7' := false, d7':= true;
+update
+:: true ~> u7' := true, d7':= false;
+:: true ~> u7' := false, d7':= true;
+
+goals
+#SL (G F (d0 and (u1 or u2 or u3 or u4 or u5 or u6 or u7)))
+#SL (G F (d1 and (u0 or u2 or u3 or u4 or u5 or u6 or u7)))
+#SL (G F (d2 and (u0 or u1 or u3 or u4 or u5 or u6 or u7)))
+#SL (G F (d3 and (u0 or u1 or u2 or u4 or u5 or u6 or u7)))
+#SL (G F (d4 and (u0 or u1 or u2 or u3 or u5 or u6 or u7)))
+#SL (G F (d5 and (u0 or u1 or u2 or u3 or u4 or u6 or u7)))
+#SL (G F (d6 and (u0 or u1 or u2 or u3 or u4 or u5 or u7)))
+#SL (G F (d7 and (u0 or u1 or u2 or u3 or u4 or u5 or u6)))
