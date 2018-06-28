@@ -5,8 +5,8 @@ OBJS	= bison.o lex.o main.o print.o evaluator.o enum_com.o builder.o inserter.o
 CC	= g++
 CFLAGS	= -g -Wall -Wno-write-strings -Wno-unused-function -ansi -pedantic
 
-stic:		$(OBJS)
-		$(CC) $(CFLAGS) $(OBJS) -o stic -ll
+sevia:		$(OBJS)
+		$(CC) $(CFLAGS) $(OBJS) -o sevia -ll
 
 lex.o:		lex.c
 		$(CC) $(CFLAGS) -c lex.c -o lex.o
@@ -45,6 +45,6 @@ lex.o yac.o main.o print.o evaluator.o enum_com.o builder.o inserter.o	: heading
 lex.o main.o		: tok.h
 
 clean:
-	rm -f *.o *~ lex.c lex.yy.c bison.c tok.h stic.tab.c stic.tab.h stic.output stic
+	rm -f *.o *~ lex.c lex.yy.c bison.c tok.h stic.tab.c stic.tab.h stic.output sevia
 clean-out:
 	rm -f output/*.ispl

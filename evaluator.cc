@@ -13,6 +13,7 @@ extern  stack<bool> bvr;
 extern vector<string> rpn_ac;
 extern struct env_ag env_ag;
 extern vector<agent> ag;
+extern vector<string> environment_vars;
 
 bool formula_eval(vector<string>& rpn)
 {
@@ -161,7 +162,9 @@ int check_locality(vector<agent>& ag, int ag_count)
            {
              ag[ag_count].varpro.push_back(ag[ag_count].ag_up[i].guard_formula[j]);
 
-             if(!(find(env_ag.obs_idx.begin(),env_ag.obs_idx.end(),ag[ag_count].ag_up[i].guard_formula[j])!=env_ag.obs_idx.end()))
+
+	     if((find(environment_vars.begin(),environment_vars.end(),ag[ag_count].ag_up[i].guard_formula[j])==environment_vars.end()))
+             if((!(find(env_ag.obs_idx.begin(),env_ag.obs_idx.end(),ag[ag_count].ag_up[i].guard_formula[j])!=env_ag.obs_idx.end())))
                {
                   
                   env_ag.obs_idx.push_back(ag[ag_count].ag_up[i].guard_formula[j]);

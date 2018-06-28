@@ -8,6 +8,7 @@ int yylex(void);
 extern FILE *coba;
 extern FILE *comb;
 extern vector<string> rpn;
+extern bool cgs_flag;
 
  env_ag env_ag;
  goals goals;
@@ -36,6 +37,8 @@ extern vector<string> rpn;
  //LTL goal formulae
  vector<string> ltl_goal;
  stack<string> ltl_stack;
+
+ vector<string> environment_vars;
 
  unsigned int ag_count=0;
  unsigned int var_count=0;
@@ -95,7 +98,7 @@ int insert_obsvar(vector<agent>& ag, unsigned int ag_count,unsigned int var_coun
 %token <sval> EQUALS
 %token <sval> NEXT
 %token <sval> SEMICOLON
-%token <sval> GOALS
+%token <sval> GOAL
 %left <sval> OR
 %left <sval> AND
 %token <sval> IMPLIES
@@ -107,13 +110,14 @@ int insert_obsvar(vector<agent>& ag, unsigned int ag_count,unsigned int var_coun
 %token <sval> F
 %token <sval> X
 %token <sval> U
+%token <sval> ENVIRONMENT
 
 %token <sval> SL
 %type <sval> goal_form
 %type <sval> gf
 %%
 
-input:	MODULE id_y CONTROL var_y INIT init_y UPDATE update_y {
+input:	MODULE id_y CONTROL var_y INIT init_y UPDATE update_y GOAL goal_form {
   ag.push_back(agent());
   ag[ag_count].agName = temp_ag;
 
@@ -130,11 +134,19 @@ input:	MODULE id_y CONTROL var_y INIT init_y UPDATE update_y {
   //com(ag, var_count, ag_count);
   ag[ag_count].initStates = initStates_buff;
   ag[ag_count].ag_up = update_buff;
-  print_ag(ag,ag_count,var_count);
+  
+  //print_ag(ag,ag_count,var_count);
+  //cout << "A" << endl;
+  //cout << cgs_flag << endl;
+  if(!cgs_flag)
+  {
+	print_ag(ag,ag_count,var_count);
   for (unsigned int j=0; j<ag[ag_count].ag_up.size();j++)
   {
     reverse(ag[ag_count].ag_up[j].guard_formula.begin(),ag[ag_count].ag_up[j].guard_formula.end());
   }
+  }
+  
   vec_ac_temp.clear();
   initStates_buff.clear();
   update_buff.clear();
@@ -144,7 +156,7 @@ input:	MODULE id_y CONTROL var_y INIT init_y UPDATE update_y {
   //cout << "\nUPCOUNT: " << up_count;
   up_count=0;
  }
-| MODULE id_y CONTROL var_y INIT init_y UPDATE update_y GOALS goal_form{
+| MODULE id_y CONTROL var_y INIT init_y UPDATE update_y{
   ag.push_back(agent());
   ag[ag_count].agName = temp_ag;
 
@@ -153,10 +165,25 @@ input:	MODULE id_y CONTROL var_y INIT init_y UPDATE update_y {
     {
       ag[ag_count].varName.push_back($2);
       ag[ag_count].varName[i]=temp_var[i];
+      environment_vars.push_back(temp_var[i]);
       ag[ag_count].varpro.push_back(temp_var[i]);
     }
   //com_pro(ag, var_count, ag_count);
   //com(ag, var_count, ag_count);
+  //cout << "B" << endl;
+
+  if(cgs_flag)
+  for (unsigned int g=0; g<ag_count; g++)
+	{
+		print_ag(ag,g,ag[g].varName.size());
+for (unsigned int j=0; j<ag[ag_count].ag_up.size();j++)
+  {
+    reverse(ag[ag_count].ag_up[j].guard_formula.begin(),ag[ag_count].ag_up[j].guard_formula.end());
+  }
+	}
+  //cout << ag_count;
+  //print_ag(ag,0,1);
+  //print_ag(ag,1,1);
   ag[ag_count].initStates = initStates_buff;
   ag[ag_count].ag_up = update_buff;
   print_ag(ag,ag_count,var_count);
@@ -392,7 +419,7 @@ ltl_goal.push_back("not");
 | LB gf RB
 ;
 
-goal_form: SL gf
+goal_form: DCOL gf SEMICOLON
 {
 reverse(ltl_goal.begin(),ltl_goal.end());
 string res = build_ltl(ltl_goal);

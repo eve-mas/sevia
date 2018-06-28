@@ -14,6 +14,7 @@ extern struct env_ag env_ag;
 char ch;
 extern vector<agent> ag;
 extern struct goals goals;
+extern vector<string> environment_vars;
 
 string bin_enum(unsigned int n, unsigned int bitcount);
 int insert_obsvar(vector<agent>& ag, unsigned int ag_count,unsigned int var_count);
@@ -338,7 +339,6 @@ int print_ag(vector<agent>& ag, unsigned int ag_count,unsigned int var_count)
  {
    if(strcmp(ag[ag_count].agName.c_str(),"environment") == 0)
    {
-	   //cout << "ARENA\n";
            insert_obsvar(ag,ag_count,var_count);
    }
    else
@@ -353,6 +353,7 @@ int print_ag(vector<agent>& ag, unsigned int ag_count,unsigned int var_count)
 	   fprintf(coba,"end Vars\n");//print Vars suffix
 	   ac_count = exp2(var_count);//get the number of actions 
 	   //ac_count = ag[ag_count].ag_up.size()-1; //no of udpate commands
+	   
 	   fprintf(coba,"Actions = {");
 	   for(i=0;i<ac_count;i++)
 	     {
@@ -373,7 +374,7 @@ int print_ag(vector<agent>& ag, unsigned int ag_count,unsigned int var_count)
 
 	   //insert_act(ag,ag_count);
 	   guard_checker(ag, ag_count, var_count);
-
+		
 	   fprintf(coba,"Protocol:\n");//protocol prefix
 		for(i=0;i<ag[ag_count].agPro.size();i++)
 		  {
@@ -382,12 +383,21 @@ int print_ag(vector<agent>& ag, unsigned int ag_count,unsigned int var_count)
 		    fprintf(coba,"(");
 			for(j=0;j<ag[ag_count].agPro[i].t_pro.size();j++)
 			  {
+
 			     if(j!=0)
 				fprintf(coba," and ");
 		             if(find(ag[ag_count].varName.begin(),ag[ag_count].varName.end(),ag[ag_count].agPro[i].t_pro[j])!=ag[ag_count].varName.end())
+				{
 			     fprintf(coba,"%s=true",ag[ag_count].agPro[i].t_pro[j].c_str());
-		             else
-		             fprintf(coba,"Environment.e%s=true",ag[ag_count].agPro[i].t_pro[j].c_str());
+					//cout << ag[ag_count].agName << endl;
+				}
+			     else if (find(environment_vars.begin(),environment_vars.end(),ag[ag_count].agPro[i].t_pro[j])!=environment_vars.end())
+				{
+					//cout << "AAAA";
+					fprintf(coba,"Environment.%s=true",ag[ag_count].agPro[i].t_pro[j].c_str());
+				}		             
+else
+fprintf(coba,"Environment.e%s=true",ag[ag_count].agPro[i].t_pro[j].c_str());
 			  }
 			for(j=0;j<ag[ag_count].agPro[i].f_pro.size();j++)
 			  {
@@ -395,6 +405,10 @@ int print_ag(vector<agent>& ag, unsigned int ag_count,unsigned int var_count)
 			     fprintf(coba," and ");
 		             if(find(ag[ag_count].varName.begin(),ag[ag_count].varName.end(),ag[ag_count].agPro[i].f_pro[j])!=ag[ag_count].varName.end())
 			     fprintf(coba,"%s=false",ag[ag_count].agPro[i].f_pro[j].c_str());
+			     else if (find(environment_vars.begin(),environment_vars.end(),ag[ag_count].agPro[i].f_pro[j])!=environment_vars.end())
+				{
+					fprintf(coba,"Environment.%s=false",ag[ag_count].agPro[i].f_pro[j].c_str());
+				}
 		             else
 		             fprintf(coba,"Environment.e%s=false",ag[ag_count].agPro[i].f_pro[j].c_str());
 			  }

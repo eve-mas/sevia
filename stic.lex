@@ -29,7 +29,7 @@ id              [a-zA-Z][a-zA-Z_0-9]*
 ":="            { return EQUALS; }
 "'"             { return NEXT; }
 ";"             { return SEMICOLON; }
-"goals"		{ return GOALS; }
+"goal"		{ return GOAL; }
 "and"		{ return AND; }
 "or"		{ return OR; }
 "->"		{ return IMPLIES; }
@@ -42,7 +42,7 @@ id              [a-zA-Z][a-zA-Z_0-9]*
 "U"		{ return U; }
 ")"		{ return RB; }
 {id}            { yylval.sval = strdup(yytext); return ISI;}
-"#SL"		{ return SL;}
+
 
 [ \t]*		{}
 [\n]		{ yylineno++;}
