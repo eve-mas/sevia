@@ -1,0 +1,20 @@
+
+********************************************************
+                        EVIA          
+  Equilibrium Verification via ISPL Analysis        
+                        v1.0          
+
+*********************************************************
+...
+Compiling...
+
+Translation finished
+Output File: ./output.ispl
+Compilation time (s): 0.00116
+Running MCMAS on output file
+
+Building reachable state space...
+  Formula number 1: <<st_matching_pennies_player_1>> <<st_matching_pennies_player_2>> <<st_RM1>> <<st_RM2>> <<st_RM3>> <<st_Env>> (matching_pennies_player_1, st_matching_pennies_player_1) (matching_pennies_player_2, st_matching_pennies_player_2) (RM1, st_RM1) (RM2, st_RM2) (RM3, st_RM3) (Environment, st_Env) ((((((X (((! matching_pennies_player_2_var) || matching_pennies_player_1_var) && (matching_pennies_player_2_var || (! matching_pennies_player_1_var))) || (G F s3 && (G F s2 && (! G F s1)))) || [[alt_st_matching_pennies_player_1]] (matching_pennies_player_1, alt_st_matching_pennies_player_1) (! (X (((! matching_pennies_player_2_var) || matching_pennies_player_1_var) && (matching_pennies_player_2_var || (! matching_pennies_player_1_var))) || (G F s3 && (G F s2 && (! G F s1)))))) && ((X (! (((! matching_pennies_player_2_var) || matching_pennies_player_1_var) && (matching_pennies_player_2_var || (! matching_pennies_player_1_var)))) || (G F s3 && (G F s2 && (! G F s1)))) || [[alt_st_matching_pennies_player_2]] (matching_pennies_player_2, alt_st_matching_pennies_player_2) (! (X (! (((! matching_pennies_player_2_var) || matching_pennies_player_1_var) && (matching_pennies_player_2_var || (! matching_pennies_player_1_var)))) || (G F s3 && (G F s2 && (! G F s1))))))) && (G F (X s0 && s1) || [[alt_st_RM1]] (RM1, alt_st_RM1) (! G F (X s0 && s1)))) && (G F (X s0 && s2) || [[alt_st_RM2]] (RM2, alt_st_RM2) (! G F (X s0 && s2)))) && (G F (X s0 && s3) || [[alt_st_RM3]] (RM3, alt_st_RM3) (! G F (X s0 && s3)))), is FALSE in the model
+execution time = 0.223
+number of reachable states = 64
+BDD memory in use = 15625344

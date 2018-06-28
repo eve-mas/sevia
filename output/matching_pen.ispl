@@ -1,0 +1,62 @@
+Agent Environment
+Obsvars:
+T : boolean;
+end Obsvars
+Actions = {none};
+Protocol:
+T = true : {none};
+T = false : {none};
+end Protocol
+Evolution:
+end Evolution
+end Agent
+
+Agent alice
+Vars:
+ca : boolean;
+end Vars
+Actions = {ac0,ac1,none};
+Protocol:
+(ca=true) : {ac0,ac1};
+(ca=false) : {ac0,ac1};
+end Protocol
+Evolution:
+(ca=true) if Action=ac0;
+(ca=false) if Action=ac1;
+end Evolution
+end Agent
+
+Agent bob
+Vars:
+cb : boolean;
+end Vars
+Actions = {ac0,ac1,none};
+Protocol:
+(cb=true) : {ac0,ac1};
+(cb=false) : {ac0,ac1};
+end Protocol
+Evolution:
+(cb=true) if Action=ac0;
+(cb=false) if Action=ac1;
+end Evolution
+end Agent
+
+Evaluation
+T if Environment.T=true;
+ca if alice.ca=true;
+cb if bob.cb=true;
+end Evaluation	
+
+InitStates
+((alice.ca=true) or (alice.ca=false)) and
+((bob.cb=false) or (bob.cb=true)) and Environment.T=true;
+end InitStates
+
+Formulae
+ <<st_alice>> <<st_bob>> <<st_Env>>
+ (alice,st_alice) (bob,st_bob) (Environment,st_Env)
+(
+(X ((!cb or ca) and (cb or !ca)) or [[alt_st_alice]](alice,alt_st_alice)(!(X ((!cb or ca) and (cb or !ca))))) and
+(X ! ((!cb or ca) and (cb or !ca)) or [[alt_st_bob]](bob,alt_st_bob)(!(X ! ((!cb or ca) and (cb or !ca)))))
+);
+end Formulae
