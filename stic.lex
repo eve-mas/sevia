@@ -41,6 +41,7 @@ id              [a-zA-Z][a-zA-Z_0-9]*
 "X"		{ return X; }
 "U"		{ return U; }
 ")"		{ return RB; }
+"property"	{ return PROPF; }
 {id}            { yylval.sval = strdup(yytext); return ISI;}
 
 

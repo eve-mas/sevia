@@ -74,7 +74,8 @@ extern int yydebug;
     X = 284,
     U = 285,
     ENVIRONMENT = 286,
-    SL = 287
+    PROPF = 287,
+    SL = 288
   };
 #endif
 
@@ -90,7 +91,7 @@ union YYSTYPE
   char          *sval;
   bool		boolean;
 
-#line 94 "stic.tab.h" /* yacc.c:1909  */
+#line 95 "stic.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

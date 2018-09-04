@@ -111,6 +111,7 @@ int insert_obsvar(vector<agent>& ag, unsigned int ag_count,unsigned int var_coun
 %token <sval> X
 %token <sval> U
 %token <sval> ENVIRONMENT
+%token <sval> PROPF
 
 %token <sval> SL
 %type <sval> goal_form
@@ -200,7 +201,9 @@ for (unsigned int j=0; j<ag[ag_count].ag_up.size();j++)
   //cout << "\nUPCOUNT: " << up_count;
   up_count=0;
  }
-| input input
+| input input{
+}
+| input PROPF goal_form
 ;
 
 
