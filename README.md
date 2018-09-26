@@ -15,24 +15,25 @@ SEVIA can be used online as a webservice from: http://163.1.88.96/sevia.html
 #### Linux:
 - Copy the folder of SEVIA into MCMAS working directory.
 - Compile it by executing `make` command
-- Run SEVIA by typing: 
-	`your_pc_name[.../sevia]$ ./sevia name_of_the_input_file`
 
 #### MacOS:
 - Copy the (extracted) folder of SEVIA into MCMAS working directory.
 - Use `Makefile_macos` OR `Makefile_macosx` as the Makefile (rename it into Makefile)
 - Compile it by executing `make` command
-- Run SEVIA by:
+
+### Running SEVIA:
 	- For RMG
      		`your_pc_name[.../sevia]$ ./sevia -r name_of_the_input_file.rml`
 	- For CGS
 		`your_pc_name[.../sevia]$ ./sevia -c name_of_the_input_file.rml`
 
-For verbose mode use `-v` option:
-     	- For RMG
+
+	For verbose mode use `-v` option:
+	- For RMG
      		`your_pc_name[.../sevia]$ ./sevia -r -v name_of_the_input_file.rml`
 	- For CGS
 		`your_pc_name[.../sevia]$ ./sevia -c -v name_of_the_input_file.rml`
+
 
 Makefile commands:
 - `make` : for compiling
