@@ -6,6 +6,8 @@ This tool takes SRML file as an input and convert it to ISPL.
 It then runs MCMAS to check NE-Emptiness of the setting.
 Currently supporting memoryless fragment of SL.
 
+SEVIA can be used online as a webservice from: http://163.1.88.96/sevia.html
+
 
 ************
 ### Instructions
