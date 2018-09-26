@@ -57,7 +57,7 @@ Input Format
 
 A valid input is a (SRML) file containing:
 
-	```modules module_name controls var_1,...,var_i
+	modules module_name controls var_1,...,var_i
   	  init
 	  :: guard ~> var_1' := true/false ,..., var_i' := true/false;
 	   . . .
@@ -67,7 +67,7 @@ A valid input is a (SRML) file containing:
 	   . . .
 	  :: guard ~> var_1' := prop_formula ,..., var_i' := prop_formula;
 	  goals
-	  :: LTL goal;```
+	  :: LTL goal;
 
 
 ***************
