@@ -22,17 +22,12 @@ SEVIA can be used online as a webservice from: http://163.1.88.96/sevia.html
 - Compile it by executing `make` command
 
 ### Running SEVIA:
-	- For RMG
-     		`your_pc_name[.../sevia]$ ./sevia -r name_of_the_input_file.rml`
-	- For CGS
-		`your_pc_name[.../sevia]$ ./sevia -c name_of_the_input_file.rml`
+- For RMG: `your_pc_name[.../sevia]$ ./sevia -r name_of_the_input_file.rml`
+- For CGS: `your_pc_name[.../sevia]$ ./sevia -c name_of_the_input_file.rml`
 
-
-	For verbose mode use `-v` option:
-	- For RMG
-     		`your_pc_name[.../sevia]$ ./sevia -r -v name_of_the_input_file.rml`
-	- For CGS
-		`your_pc_name[.../sevia]$ ./sevia -c -v name_of_the_input_file.rml`
+#### For verbose mode use `-v` option:
+- For RMG: `your_pc_name[.../sevia]$ ./sevia -r -v name_of_the_input_file.rml`
+- For CGS: `your_pc_name[.../sevia]$ ./sevia -c -v name_of_the_input_file.rml`
 
 
 Makefile commands:
