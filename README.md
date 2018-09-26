@@ -57,7 +57,7 @@ Input Format
 
 A valid input is a (SRML) file containing:
 
-	`modules module_name controls var_1,...,var_i
+	```modules module_name controls var_1,...,var_i
   	  init
 	  :: guard ~> var_1' := true/false ,..., var_i' := true/false;
 	   . . .
@@ -67,18 +67,16 @@ A valid input is a (SRML) file containing:
 	   . . .
 	  :: guard ~> var_1' := prop_formula ,..., var_i' := prop_formula;
 	  goals
-	  :: LTL goal;`
+	  :: LTL goal;```
 
 
 ***************
 Formula Syntax
 
 prop_formula syntax:
-
 `S := var | true | false | !S | S and S | S or S | S -> S | S <-> S`
 
 Module goals are represented as LTL formulae by the following syntax:
-
 `Z := var | true | false | !Z | Z and Z | Z or Z | X Z | F Z | G Z | Z -> Z | Z <-> Z`
 
 
@@ -107,7 +105,8 @@ Example
    :: true ~> cb' := true;
    :: true ~> cb' := false;
    goal
-   :: X !(ca <-> cb);```
+   :: X !(ca <-> cb);
+   ```
 
 
 
