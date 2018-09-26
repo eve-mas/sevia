@@ -30,14 +30,14 @@ SEVIA can be used online as a webservice from: http://163.1.88.96/sevia.html
 - For CGS: `your_pc_name[.../sevia]$ ./sevia -c -v name_of_the_input_file.rml`
 
 
-Makefile commands:
+#### Makefile commands:
 - `make` : for compiling
 - `make clean` : for cleaning compiled files
 - `make clean-out` : for cleaning output folder
 
 
 **********************
-Naming the output file
+### Naming the output file
 
 * The output file is available in folder `./output`
 
@@ -51,7 +51,7 @@ This will name your generated ISPL file into `abc.ispl`
 
 
 ************
-Input Format
+### Input Format
 
 A valid input is a (SRML) file containing:
 
@@ -69,7 +69,7 @@ A valid input is a (SRML) file containing:
 
 
 ***************
-Formula Syntax
+### Formula Syntax
 
 prop_formula syntax:<br>
 `S := var | true | false | !S | S and S | S or S | S -> S | S <-> S`
@@ -79,7 +79,7 @@ Module goals are represented as LTL formulae by the following syntax:<br>
 
 
 *******
-Example
+### Example
 
 - This is matching pennies example
 - alice (resp. bob) holds coin ca (resp. cb)
@@ -132,7 +132,7 @@ BDD memory in use = 8993824
 
 
 *******************
-Running Experiments
+### Running Experiments
 
 1. Go to folder **eve-py/src/experiments**, there are 8 scripts:
 	+ bisim_ne_emptiness.sh
