@@ -73,10 +73,10 @@ A valid input is a (SRML) file containing:
 ***************
 Formula Syntax
 
-prop_formula syntax:
+prop_formula syntax:<br>
 `S := var | true | false | !S | S and S | S or S | S -> S | S <-> S`
 
-Module goals are represented as LTL formulae by the following syntax:
+Module goals are represented as LTL formulae by the following syntax:<br>
 `Z := var | true | false | !Z | Z and Z | Z or Z | X Z | F Z | G Z | Z -> Z | Z <-> Z`
 
 
@@ -145,7 +145,7 @@ Running Experiments
 	+ replica_control_emptiness.sh
 	+ replica_control_enash.sh
 	+ replica_control_anash.sh
-2. Execute the script "experiment_name".sh using the command `./experiment_name.sh 8`
+2. Execute the script <experiment_name>.sh using the command `./experiment_name.sh 8`
 3. This will run the experiment "experiment_name" up until 8 steps.
 4. The experiment results are reported in the generated file **exetime_experiment_name.txt** with the following respective values separated by semicolons: 
 	+ compilation time,
