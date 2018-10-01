@@ -180,7 +180,7 @@ input:	MODULE id_y CONTROL var_y INIT init_y UPDATE update_y GOAL goal_form {
 
   if(cgs_flag)
   for (unsigned int g=0; g<ag_count; g++)
-	{	cout << cgs_flag << endl;
+	{	//cout << cgs_flag << endl;
 		print_ag(ag,g,ag[g].varName.size());
 for (unsigned int j=0; j<ag[ag_count].ag_up.size();j++)
   {
