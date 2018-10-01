@@ -40,31 +40,31 @@ string build_ltl(vector <string>& ltl_goal)
       else if(ltl_goal.back()=="G")
         {
           v1 = ltl_stack.top(); ltl_stack.pop();
-          v1 = "G " + v1;
+          v1 = "G (" + v1 + ")";
 	  ltl_stack.push(v1);
 	  ltl_goal.pop_back();
         }
       else if(ltl_goal.back()=="F")
         {
           v1 = ltl_stack.top(); ltl_stack.pop();
-          v1 = "F " + v1;
+          v1 = "F (" + v1 + ")";
 	  ltl_stack.push(v1);
 	  ltl_goal.pop_back();
         }
       else if(ltl_goal.back()=="X")
         {
           v1 = ltl_stack.top(); ltl_stack.pop();
-          v1 = "X " + v1;
+          v1 = "X (" + v1 + ")";
 	  ltl_stack.push(v1);
 	  ltl_goal.pop_back();
         }
-      else if(ltl_goal.back()=="U")
+      /*else if(ltl_goal.back()=="U")
         {
           v1 = ltl_stack.top(); ltl_stack.pop();
           v1 = "U " + v1;
 	  ltl_stack.push(v1);
 	  ltl_goal.pop_back();
-        }
+        }*/
       else
 	{
 	  v1 = ltl_stack.top(); ltl_stack.pop();
@@ -81,9 +81,14 @@ string build_ltl(vector <string>& ltl_goal)
            }
 	  else if(ltl_goal.back()=="implies")
            {
-              v1 = v1 + " or !" + v2;
+              v1 = "(" + v1 + " or !" + v2 + ")";
 	      ltl_stack.push(v1);
            }
+	  else if(ltl_goal.back()=="U")
+           {
+              v1 = "(" + v1 + " U " + v2 + ")";
+	      ltl_stack.push(v1);
+           }		
 	  else
            {
               v1 = "((!" + v1 + " or " + v2 + ") and (" + v1 + " or !" + v2 + "))";

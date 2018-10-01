@@ -9,6 +9,7 @@ extern FILE *coba;
 extern FILE *comb;
 extern vector<string> rpn;
 extern bool cgs_flag;
+//bool cgs_flag=false;
 
  env_ag env_ag;
  goals goals;
@@ -48,6 +49,7 @@ extern bool cgs_flag;
  string init_temp;
  stack<bool> bvr;
  vector<string>obsvars_enum;
+
 
 void print_env();
 int print_ag(vector<agent>& ag, unsigned int ag_count,unsigned int var_count);
@@ -160,6 +162,9 @@ input:	MODULE id_y CONTROL var_y INIT init_y UPDATE update_y GOAL goal_form {
 | MODULE id_y CONTROL var_y INIT init_y UPDATE update_y{
   ag.push_back(agent());
   ag[ag_count].agName = temp_ag;
+  //cgs_flag = true;
+
+  //cout << cgs_flag << endl;
 
   unsigned int i;
   for(i=0;i<var_count;i++)
@@ -175,7 +180,7 @@ input:	MODULE id_y CONTROL var_y INIT init_y UPDATE update_y GOAL goal_form {
 
   if(cgs_flag)
   for (unsigned int g=0; g<ag_count; g++)
-	{
+	{	cout << cgs_flag << endl;
 		print_ag(ag,g,ag[g].varName.size());
 for (unsigned int j=0; j<ag[ag_count].ag_up.size();j++)
   {
@@ -411,7 +416,7 @@ ltl_goal.push_back("F");
 {
 ltl_goal.push_back("X");
 }
-| U gf
+| gf U gf
 {
 ltl_goal.push_back("U");
 }
@@ -420,6 +425,8 @@ ltl_goal.push_back("U");
 ltl_goal.push_back("not");
 }
 | LB gf RB
+{
+}
 ;
 
 goal_form: DCOL gf SEMICOLON
